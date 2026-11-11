@@ -22,12 +22,12 @@ jobs:
       - name: Install JS dependencies
         working-directory: ${{ env.APP_DIR }}
         run: yarn install --ignore-engines
-      - name: Build debug APK
+      - name: Build release APK
         working-directory: ${{ env.APP_DIR }}/android
         run: |
           chmod +x gradlew
-          ./gradlew assembleDebug --no-daemon --stacktrace
+          ./gradlew assembleRelease --no-daemon --stacktrace
       - uses: actions/upload-artifact@v4
         with:
-          name: launcher-apk
-          path: ${{ env.APP_DIR }}/android/app/build/outputs/apk/debug/*.apk
+          name: launcher-apk-release
+          path: ${{ env.APP_DIR }}/android/app/build/outputs/apk/release/*.apk
